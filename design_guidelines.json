@@ -1,0 +1,125 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 4: Swiss & High-Contrast",
+  "domain": "Education / Youth Housing",
+  "colors": {
+    "light": {
+      "background": "#FFFFFF",
+      "foreground": "#050505",
+      "primary": "#002FA7",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#F4F4F5",
+      "secondary_foreground": "#050505",
+      "accent": "#FF2A00",
+      "accent_foreground": "#FFFFFF",
+      "muted": "#E5E5E5",
+      "muted_foreground": "#737373",
+      "border": "#E5E5E5",
+      "success": "#10B981",
+      "warning": "#FACC15",
+      "danger": "#EF4444"
+    },
+    "dark": {
+      "background": "#050505",
+      "foreground": "#FAFAFA",
+      "primary": "#3B82F6",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#171717",
+      "secondary_foreground": "#FAFAFA",
+      "accent": "#FF2A00",
+      "accent_foreground": "#FFFFFF",
+      "muted": "#262626",
+      "muted_foreground": "#A3A3A3",
+      "border": "#1A1A1A",
+      "success": "#059669",
+      "warning": "#D97706",
+      "danger": "#DC2626"
+    }
+  },
+  "typography": {
+    "headings": {
+      "family": "Outfit",
+      "weights": ["400", "700", "900"],
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-none",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight",
+      "h3": "text-xl sm:text-2xl tracking-tight",
+      "h4": "text-lg sm:text-xl font-medium"
+    },
+    "body": {
+      "family": "Plus Jakarta Sans",
+      "weights": ["400", "500", "600"],
+      "base": "text-base leading-relaxed",
+      "small": "text-sm leading-normal",
+      "labels": "text-xs tracking-[0.2em] uppercase font-bold"
+    }
+  },
+  "spacing": {
+    "generous": "p-8 md:p-12 lg:p-16",
+    "bento_gap": "gap-8 md:gap-12",
+    "dashboard_gap": "gap-4 lg:gap-6",
+    "section_y": "py-24 md:py-32"
+  },
+  "surfaces": {
+    "glassmorphism": "backdrop-blur-xl bg-white/10 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.12)]",
+    "dashboard_card": "bg-secondary/50 border border-border rounded-lg shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300",
+    "hero_overlay": "bg-gradient-to-r from-black/80 via-black/50 to-transparent",
+    "status_badges": {
+      "pending": "bg-warning/20 text-warning border border-warning/50",
+      "approved": "bg-success/20 text-success border border-success/50",
+      "rejected": "bg-danger/20 text-danger border border-danger/50"
+    }
+  },
+  "layout": {
+    "marketing": "Asymmetrical Bento grids (grid-cols-1 md:grid-cols-12), high negative space, staggered components.",
+    "dashboard": "Control Room grid (grid-cols-1 md:grid-cols-3 lg:grid-cols-4), tight density, full height stretch for items."
+  },
+  "motion_and_animations": {
+    "library": "framer-motion, lenis (for smooth scrolling)",
+    "page_transition": "Fade and slight slide up (y: 20 -> 0) with duration 0.6s easeInOut.",
+    "staggered_reveals": "List items and grid cards should use staggerChildren: 0.1 for satisfying cascading load effects.",
+    "hover_effects": "Buttons scale up 1.05x, backgrounds slide in. Dashboard cards lift up (-4px) with enhanced border glow.",
+    "scroll_animations": "Use framer-motion useScroll to add subtle parallax to background images and bento grid elements.",
+    "micro_interactions": "Magnetic buttons for primary CTAs (using framer-motion useMotionValue), pulsing dots on status badges."
+  },
+  "components": {
+    "buttons": "Pill-shaped (rounded-full) for marketing, slightly rounded (rounded-md) for dashboard. High contrast text.",
+    "forms": "Use Shadcn customized inputs. Floating labels or clean minimalist inputs with bottom border only (Architectural feel).",
+    "tables": "Shadcn tables with sticky headers, striped rows on hover, highly readable monospaced numbers for fees/IDs.",
+    "navigation": "Sticky glassmorphism header with z-50. Navigation links must have animated underlines on hover."
+  },
+  "image_urls": {
+    "hero_exterior": {
+      "url": "https://images.pexels.com/photos/15577446/pexels-photo-15577446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Contemporary building showcasing modern architecture with glass facade and structural design.",
+      "usage": "Marketing page hero section background."
+    },
+    "lounge_students": {
+      "url": "https://images.unsplash.com/photo-1586638920189-f4a05ac92005?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxjb2xsZWdlJTIwc3R1ZGVudHMlMjBzdHVkeWluZyUyMHRvZ2V0aGVyJTIwbG91bmdlfGVufDB8fHx8MTc3NjM4NTEyNHww&ixlib=rb-4.1.0&q=85",
+      "description": "Group of students studying in a modern lounge.",
+      "usage": "About us or Community section in public pages."
+    },
+    "room_interior": {
+      "url": "https://images.unsplash.com/photo-1762803733564-fecc7669a91a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwYmVkcm9vbSUyMGludGVyaW9yJTIwZGFya3xlbnwwfHx8fDE3NzYzODUxMzV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Modern minimalist dark bedroom interior.",
+      "usage": "Room application/Room type showcase section."
+    },
+    "abstract_texture": {
+      "url": "https://images.unsplash.com/photo-1709990740117-0eb9358fbd24?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRhcmslMjBibHVlJTIwYmFja2dyb3VuZCUyMHRleHR1cmV8ZW58MHx8fHwxNzc2Mzg1MTM2fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Black and blue abstract background with wavy lines.",
+      "usage": "Dashboard background or login screen background."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install and use 'framer-motion' for all animations, 'lucide-react' for icons, and '@studio-freight/lenis' for smooth scrolling on public pages.",
+    "IMPORTANT: You are working with .jsx/.js files, NOT .tsx. Generate standard JavaScript code and components.",
+    "Use 'react-router-dom' for routing across the hybrid app (Public, Admin, Student).",
+    "For the UI, heavily rely on pure Tailwind for marketing pages (bento grids, asymmetry), and customized Shadcn UI for the dashboard and forms.",
+    "Implement a dark/light mode toggle. Default to Dark mode.",
+    "Ensure all interactive elements have 'data-testid' attributes (e.g., 'data-testid=\"apply-hostel-button\"').",
+    "Never use generic placeholder images. Use the provided image_urls for visual assets.",
+    "Do not use the 'Inter' font for headings. Use 'Outfit' for headings and 'Plus Jakarta Sans' for body text via Google Fonts.",
+    "Admin Dashboard requires realistic charts (recharts or Shadcn charts) for stats like occupied beds, revenue.",
+    "Hostel Application Form must have step-by-step or smooth sliding transitions using Framer Motion AnimatePresence.",
+    "Ensure the hero image has a proper gradient overlay to maintain text contrast (minimum 4.5:1 ratio)."
+  ]
+}

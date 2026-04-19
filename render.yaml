@@ -1,0 +1,50 @@
+# Render Blueprint: API (Python) + Static React.
+# MySQL: PlanetScale / Railway MySQL / Aiven / any host — paste async URL into DATABASE_URL.
+# Format: mysql+aiomysql://USER:PASSWORD@HOST:3306/DATABASE
+
+services:
+  - type: web
+    name: wit-hostel-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@witboys.com
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: SENDER_EMAIL
+        value: onboarding@resend.dev
+      - key: WAITLIST_DEPOSIT_AMOUNT
+        value: "500"
+      - key: EMERGENT_AUTH_URL
+        value: https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data
+
+  - type: web
+    name: wit-hostel-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    staticPublishPath: build
+    envVars:
+      - key: REACT_APP_BACKEND_URL
+        fromService:
+          name: wit-hostel-api
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL

@@ -1,0 +1,48 @@
+# Full stack: MySQL 8 + FastAPI + React/nginx. Start Docker Desktop, then:
+#   docker compose up --build
+# Open http://localhost:8080 — API proxied at /api.
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: witroot
+      MYSQL_DATABASE: wit_hostel_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-pwitroot"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 45s
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: mysql+aiomysql://root:witroot@mysql:3306/wit_hostel_db
+      CORS_ORIGINS: http://localhost:8080,http://127.0.0.1:8080,http://localhost,http://127.0.0.1,http://localhost:3000,http://127.0.0.1:3000
+    env_file:
+      - ./backend/.env
+    expose:
+      - "8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_BACKEND_URL: ""
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+
+volumes:
+  mysql_data:

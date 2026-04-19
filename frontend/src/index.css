@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-heading: 'Outfit', ui-sans-serif, system-ui;
+    --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+.font-heading { font-family: var(--font-heading); }
+.font-mono { font-family: var(--font-mono); }
+
+code { font-family: var(--font-mono); }
+
+@layer base {
+    :root {
+        /* Light - Swiss high-contrast */
+        --background: 0 0% 100%;
+        --foreground: 0 0% 2%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 2%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 2%;
+        --primary: 222 100% 33%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 0 0% 96%;
+        --secondary-foreground: 0 0% 2%;
+        --muted: 0 0% 94%;
+        --muted-foreground: 0 0% 40%;
+        --accent: 11 100% 50%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 90%;
+        --input: 0 0% 90%;
+        --ring: 222 100% 33%;
+        --radius: 0.75rem;
+    }
+    .dark {
+        /* Dark - default */
+        --background: 0 0% 3%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 6%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 6%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 217 91% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 0 0% 9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 14%;
+        --muted-foreground: 0 0% 64%;
+        --accent: 11 100% 50%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 72% 50%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 0 0% 12%;
+        --input: 0 0% 12%;
+        --ring: 217 91% 60%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Custom selection */
+::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.4); }
+
+/* Grain texture overlay */
+.grain::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Pulsing dot for status badges */
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+.pulse-dot {
+    animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* Animated underline */
+.link-underline {
+    position: relative;
+}
+.link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-underline:hover::after { width: 100%; }
+
+/* Glass surface */
+.glass {
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    background: hsl(var(--card) / 0.6);
+    border: 1px solid hsl(var(--border) / 0.6);
+}
+
+/* Marquee */
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee-track {
+    animation: marquee 30s linear infinite;
+}
+
+/* Gradient border accent */
+.accent-border {
+    position: relative;
+}
+.accent-border::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: hsl(var(--accent));
+}
+
+/* Noise bg for hero */
+.hero-noise {
+    background-image: radial-gradient(circle at 15% 15%, hsl(var(--primary) / 0.18), transparent 45%),
+                      radial-gradient(circle at 85% 85%, hsl(var(--accent) / 0.12), transparent 45%);
+}
+
+/* No-underline on all anchors by default */
+a { text-decoration: none; color: inherit; }
+
+/* Input focus ring subtle */
+input:focus, textarea:focus, select:focus, button:focus { outline: none; }
