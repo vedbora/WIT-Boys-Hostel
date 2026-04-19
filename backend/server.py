@@ -1403,10 +1403,16 @@ async def export_payments(_: dict = Depends(require_admin), session: AsyncSessio
 
 app.include_router(api)
 
+_cors_raw = os.environ.get("CORS_ORIGINS", "").strip()
+_cors_list = [o.strip() for o in _cors_raw.split(",") if o.strip()] if _cors_raw else []
+# Local dev: any port on localhost / 127.0.0.1 (CRA often uses 3001, 3002, …)
+_cors_local_regex = r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$"
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get("CORS_ORIGINS", "*").split(","),
+    allow_origins=_cors_list,
+    allow_origin_regex=_cors_local_regex,
     allow_methods=["*"],
     allow_headers=["*"],
 )
